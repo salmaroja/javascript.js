@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieList = document.querySelectorAll("#cookie-jar li.cookie");
+            let cookieCount = cookieList.length;
+
+            function removeLastCookie() {
+                if (cookieCount > 0) {
+                    const lastCookie = cookieList[cookieCount - 1];
+                    lastCookie.remove();
+                    cookieCount--;
+                    document.querySelector("#cookie-count").textContent ={cookieCount};
+                }
+            }
+
+            setInterval(removeLastCookie, 30000); // Remove a cookie every 30 seconds 
+        });
+    </script>
+</head>
+<body>
+    <h2 id="cookie-header">Whitaker's Cookie Jar</h2>
+    <ul id="cookie-jar">
+        <!-- List items here -->

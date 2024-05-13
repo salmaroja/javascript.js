@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To-Do List</title>
+    <style>
+        .white {
+            background-color: white;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>My super nifty to-do list</h1>
+    <ul id="list"></ul>
+    <div>
+        <input type="text" id="item" />
+        <button id="add">add</button>
+        <button id="remove">remove</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const list = document.getElementById("list");
+            const addButton = document.getElementById("add");
+            const removeButton = document.getElementById("remove");
+            const itemInput = document.getElementById("item");
+            let isWhite = true;
+
+            addButton.addEventListener("click", function () {
+                const items = itemInput.value.trim().split(/\s+/);
+                items.forEach(item => {
+                    if (item !== "") {
+                        const li = document.createElement("li");
+                        li.textContent = item;
+                        li.classList.add(isWhite ? "white" : "yellow");
+                        list.appendChild(li);
+                        isWhite = !isWhite;
+                    }
+                });
+                itemInput.value = "";
+            });
+
+            removeButton.addEventListener("click", function () {
+                const textToRemove = itemInput.value.trim().toLowerCase();
+                const items = list.querySelectorAll("li");
+                items.forEach(item => {
+                    if (item.textContent.toLowerCase() === textToRemove) {
+                        list.removeChild(item);
+                        isWhite = !isWhite; // Update color pattern
+                        return;
+                    }
+                });
+                itemInput.value = "";
+            });
+        });
+    </script>
+</body>
+</html>
+
