@@ -9,4 +9,4 @@ window.onload = function(){
     var cookieCountElement = document.getElementById("cookie-count");
     cookieCountElement.textContent=cookieCountText;
     cookieCountElement.style.color ="#f7f16d";
-};
+};g
